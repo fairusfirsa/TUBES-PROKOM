@@ -6,3 +6,4 @@
 # Penjelasan Sistem Angsuran Rumah
 # Fitur-fitur Aplikasi
 # Flowchart
+![Flowchart Angsuran Rumah Kelompok 13](https://github.com/user-attachments/assets/6c959737-cd5f-4ffb-887d-ce943f22839f)
