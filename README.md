@@ -9,6 +9,6 @@ Aplikasi ini adalah aplikasi untuk menghitung pembayaran angsuran rumah pengguna
 1. Aplikasi ini dapat membantu mengelola data angsuran
 2. Menghitung berapa kali pembayaran angsuran
 3. Menghitung jumlah biaya angsuran rumah beserta sisa biaya angsuran
-4. Aplikasi ini dapat menyimpan dan menghapus riwayat pembayaran angsuran pengguna 
+4. Aplikasi ini dapat menyimpan riwayat pembayaran angsuran pengguna 
 # Flowchart
 ![Flowchart Angsuran Rumah Kelompok 13](https://github.com/user-attachments/assets/6c959737-cd5f-4ffb-887d-ce943f22839f)
