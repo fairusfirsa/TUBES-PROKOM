@@ -12,3 +12,4 @@ Aplikasi ini adalah aplikasi untuk menghitung pembayaran angsuran rumah pengguna
 4. Aplikasi ini dapat menyimpan riwayat pembayaran angsuran pengguna 
 # Flowchart
 ![Flowchart Angsuran Rumah Kelompok 13](https://github.com/user-attachments/assets/6c959737-cd5f-4ffb-887d-ce943f22839f)
+Flowchart di atas menggambarkan tentang proses sistem angsuran rumah berlangsung. Dimulai dari memasukkan input data
