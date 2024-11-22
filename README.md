@@ -8,7 +8,6 @@ Aplikasi ini adalah aplikasi untuk menghitung pembayaran angsuran rumah pengguna
 # Fitur-fitur Aplikasi
 1. Aplikasi ini dapat membantu mengelola data angsuran
 2. Menghitung berapa kali pembayaran angsuran!
-3. [IMG-20241119-WA0020](https://github.com/user-attachments/assets/b28c613e-c751-4e70-b121-0f12623afca5)
 
 4. Menghitung jumlah biaya angsuran rumah beserta sisa biaya angsuran
 5. Aplikasi ini dapat menyimpan riwayat pembayaran angsuran pengguna 
