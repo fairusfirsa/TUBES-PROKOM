@@ -24,7 +24,7 @@ class SistemAngsuranRumah:
         self.harga_var = tk.StringVar()
         ttk.Entry(self.main_frame, textvariable=self.harga_var).grid(row=1, column=1, padx=5, pady=5)
         
-        ttk.Label(self.main_frame, text="Uang Muka:").grid(row=2, column=0, sticky=tk.W)
+        ttk.Label(self.main_frame, text="DP:").grid(row=2, column=0, sticky=tk.W)
         self.uang_muka_var = tk.StringVar()
         ttk.Entry(self.main_frame, textvariable=self.uang_muka_var).grid(row=2, column=1, padx=5, pady=5)
         
