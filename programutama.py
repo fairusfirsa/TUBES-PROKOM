@@ -13,7 +13,6 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
-from range11 import halaman_rumah
 
 # Fungsi Halaman 1
 def halaman1(main):
@@ -437,7 +436,6 @@ def halaman_rekomen(main):
     
     tombol_100_250 = CTkButton(
         label_rek, text="100 - 250 Juta",
-        command=lambda:halaman_rumah(main),
         font=("Helvetica", 30),
         fg_color="#57a689",  
         text_color="white",
