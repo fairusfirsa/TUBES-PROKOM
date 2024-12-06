@@ -13,6 +13,10 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
+from range1 import halaman_rumah as h1
+from range2 import halaman_rumah as h2
+from range3 import halaman_rumah as h3
+from range4 import halaman_rumah as h4
 
 # Fungsi Halaman 1
 def halaman1(main):
@@ -296,7 +300,7 @@ def simpan_pdf(harga, dp, waktu, bunga, angsuran, email):
 
         logo_path = "logo.png" 
         if os.path.exists(logo_path):
-            c.drawImage(logo_path, 50, height - 100, width=50, height=50, mask='auto')
+            c.drawImage(logo_path, 100, height - 100, width=50, height=50, mask='auto')
 
         c.setFont("Helvetica-Bold", 16)
         c.drawString(170, height - 70, "PT CicilAman")
@@ -436,6 +440,7 @@ def halaman_rekomen(main):
     
     tombol_100_250 = CTkButton(
         label_rek, text="100 - 250 Juta",
+        command=lambda:h1(main),
         font=("Helvetica", 30),
         fg_color="#57a689",  
         text_color="white",
@@ -446,7 +451,7 @@ def halaman_rekomen(main):
 
     tombol_250_500 = CTkButton(
         label_rek, text="250 - 500 Juta",
-        command=lambda: (250, 500),
+        command=lambda:h2(main),
         font=("Helvetica", 30),
         fg_color="#57a689",
         text_color="white",
@@ -457,7 +462,7 @@ def halaman_rekomen(main):
 
     tombol_500_750 = CTkButton(
         label_rek, text="500 - 750 Juta",
-        command=lambda: (500, 750),
+        command=lambda:h3(main),
         font=("Helvetica", 30),
         fg_color="#57a689",
         text_color="white",
@@ -468,7 +473,7 @@ def halaman_rekomen(main):
 
     tombol_750_1m = CTkButton(
         label_rek, text="750 Juta - 1 Miliar",
-        command=lambda: (750, 1000),
+        command=lambda:h4(main),
         font=("Helvetica", 30),
         fg_color="#57a689",
         text_color="white",
