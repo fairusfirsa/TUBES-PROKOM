@@ -176,7 +176,7 @@ Harga: {rumah2['harga']}"""
         current_index = (current_index + step) % len(rumah_data)
         halaman_rumah(main)
         
-            # Tombol Quit
+            #  Quit
     gambar_quit = Image.open('TUBES-PROKOM/bg/quit.png').resize((300, 60), Image.LANCZOS)
     gambar_quit2 = ImageTk.PhotoImage(gambar_quit)
     tombolquit = CTkButton(
