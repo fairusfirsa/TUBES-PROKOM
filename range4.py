@@ -290,7 +290,7 @@ def halaman_pilihan_pembayaran(main, rumah):
     )
     tombolcicil.place(relx=0.5, rely=0.55, anchor="center")
     
-    # Tombol lunas
+    # Tmbl lunas
     gambar_lunas = Image.open('TUBES-PROKOM/bg/lunas.png').resize((300, 60), Image.LANCZOS)
     gambar_lunas2= ImageTk.PhotoImage(gambar_lunas)
     tombollunas = CTkButton(

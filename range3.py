@@ -16,7 +16,7 @@ from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
 
 
-# Data rekomendasi rumah
+# Data rkmndsi rumah
 rumah_data = [
     {
         "nama": "Green Haven Residence",
