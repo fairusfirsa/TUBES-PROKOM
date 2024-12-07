@@ -28,12 +28,12 @@ def halaman1(main):
     frame1 = tk.Frame(main, bg='black')
     frame1.pack(expand=True, ipadx=1920, ipady=1080)
 
-    utama = ImageTk.PhotoImage(Image.open('1.png'))
+    utama = ImageTk.PhotoImage(Image.open('TUBES-PROKOM/bg/1.png'))
     label = tk.Label(frame1, image=utama)
     label.pack(fill=tk.BOTH, expand=tk.YES)
 
     # Tombol Quit
-    gambar_quit = Image.open('quit.png').resize((300, 60), Image.LANCZOS)
+    gambar_quit = Image.open('TUBES-PROKOM/bg/quit.png').resize((300, 60), Image.LANCZOS)
     gambar_quit2 = ImageTk.PhotoImage(gambar_quit)
     tombolquit = CTkButton(
         label, text="", image=gambar_quit2, cursor='hand2',
@@ -42,7 +42,7 @@ def halaman1(main):
     tombolquit.pack(padx=240, pady=170, anchor='s', side='left')
 
     # Tombol Next
-    gambar_next = Image.open('next.png').resize((300, 60), Image.LANCZOS)
+    gambar_next = Image.open('TUBES-PROKOM/bg/next.png').resize((300, 60), Image.LANCZOS)
     gambar_next2 = ImageTk.PhotoImage(gambar_next)
     tombolnext = CTkButton(
         label, text="", image=gambar_next2, cursor='hand2',
@@ -75,7 +75,7 @@ def halaman_login(main):
     frame_login = tk.Frame(main)
     frame_login.pack(expand=True, fill=tk.BOTH)
 
-    bg_login = ImageTk.PhotoImage(Image.open('3.png')) 
+    bg_login = ImageTk.PhotoImage(Image.open('TUBES-PROKOM/bg/3.png')) 
     label_bg = tk.Label(frame_login, image=bg_login)
     label_bg.place(relwidth=1, relheight=1)  
 
@@ -87,8 +87,8 @@ def halaman_login(main):
     pw_user = tk.Entry(frame_login, show="*", width=30, font=("Helvetica", 20), relief="flat", bg="#ffffff")
     pw_user.place(relx=0.5, rely=0.5, anchor="center")
     
-    show_img = Image.open('oeye.png')  
-    hide_img = Image.open('heye.png')
+    show_img = Image.open('TUBES-PROKOM/bg/oeye.png')  
+    hide_img = Image.open('TUBES-PROKOM/bg/heye.png')
     
     show_img = ImageTk.PhotoImage(show_img.resize((25, 25)))  
     hide_img = ImageTk.PhotoImage(hide_img.resize((25, 25))) 
@@ -152,7 +152,7 @@ def halaman_signup(main):
     frame_signup = tk.Frame(main)
     frame_signup.pack(expand=True, fill=tk.BOTH)
 
-    bg_signup = ImageTk.PhotoImage(Image.open('4.png'))  
+    bg_signup = ImageTk.PhotoImage(Image.open('TUBES-PROKOM/bg/4.png'))  
     label_bg = tk.Label(frame_signup, image=bg_signup)
     label_bg.place(relwidth=1, relheight=1)
     
@@ -165,8 +165,8 @@ def halaman_signup(main):
     pw_user = tk.Entry(frame_signup, show="*", width=30, font=("Helvetica", 20), relief="flat", bg="#ffffff")
     pw_user.place(relx=0.5, rely=0.6, anchor="center")
     
-    show_img = Image.open('oeye.png')  
-    hide_img = Image.open('heye.png')
+    show_img = Image.open('TUBES-PROKOM/bg/oeye.png')  
+    hide_img = Image.open('TUBES-PROKOM/bg/heye.png')
     
     show_img = ImageTk.PhotoImage(show_img.resize((25, 25)))  
     hide_img = ImageTk.PhotoImage(hide_img.resize((25, 25))) 
@@ -232,11 +232,11 @@ def halaman3(main, user_email):
     frame3 = tk.Frame(main, bg='black')
     frame3.pack(expand=True, ipadx=1920, ipady=1080)
 
-    utama = ImageTk.PhotoImage(Image.open('2.png'))
+    utama = ImageTk.PhotoImage(Image.open('TUBES-PROKOM/bg/2.png'))
     label = tk.Label(frame3, image=utama)
     label.pack(fill=tk.BOTH, expand=tk.YES)
 
-    rekomen = Image.open('rekomen.png').resize((300, 60), Image.LANCZOS)
+    rekomen = Image.open('TUBES-PROKOM/bg/rekomen.png').resize((300, 60), Image.LANCZOS)
     rekomen2 = ImageTk.PhotoImage(rekomen)
     tombolrekomen = CTkButton(
         label, text="", image=rekomen2, cursor='hand2',
@@ -246,7 +246,7 @@ def halaman3(main, user_email):
     tombolrekomen.pack(padx=240, pady=300, anchor='s', side='left')
 
     # Tombol Hitung
-    hitung = Image.open('hitung.png').resize((300, 60), Image.LANCZOS)
+    hitung = Image.open('TUBES-PROKOM/bg/hitung.png').resize((300, 60), Image.LANCZOS)
     hitung2 = ImageTk.PhotoImage(hitung)
     tombolhitung = CTkButton(
         label, text="", image=hitung2, cursor='hand2',
@@ -359,7 +359,7 @@ def halaman_hitung(main, user_email):
     frame_hitung = tk.Frame(main)
     frame_hitung.pack(expand=True, fill=tk.BOTH)
 
-    bg_hitung_img = Image.open('5.png')  
+    bg_hitung_img = Image.open('TUBES-PROKOM/bg/5.png')  
     bg_hitung = ImageTk.PhotoImage(bg_hitung_img)
     label_bg = tk.Label(frame_hitung, image=bg_hitung)
     label_bg.image = bg_hitung  
@@ -405,7 +405,7 @@ def halaman_hitung(main, user_email):
     ).place(relx=0.5, rely=0.72, anchor="w")
     
     # Tombol Quit
-    gambar_quit = Image.open('quit.png').resize((300, 60), Image.LANCZOS)
+    gambar_quit = Image.open('TUBES-PROKOM/bg/quit.png').resize((300, 60), Image.LANCZOS)
     gambar_quit2 = ImageTk.PhotoImage(gambar_quit)
     tombolquit = CTkButton(
         frame_hitung, text="", image=gambar_quit2, cursor='hand2',
@@ -414,7 +414,7 @@ def halaman_hitung(main, user_email):
     tombolquit.pack(padx=150, pady=100, anchor='s', side='right')
     
     # halaman rekomen
-    gambar_next = Image.open('rekomen.png').resize((300, 60), Image.LANCZOS)
+    gambar_next = Image.open('TUBES-PROKOM/bg/rekomen.png').resize((300, 60), Image.LANCZOS)
     gambar_next2 = ImageTk.PhotoImage(gambar_next)
     tombolnext = CTkButton(
         frame_hitung, text="", image=gambar_next2, cursor='hand2',
@@ -434,7 +434,7 @@ def halaman_rekomen(main):
     frame_rekomen = tk.Frame(main, bg='black')
     frame_rekomen.pack(expand=True, fill=tk.BOTH)
 
-    gambar_rek = ImageTk.PhotoImage(Image.open('8.png').resize((1920, 1080), Image.LANCZOS))
+    gambar_rek = ImageTk.PhotoImage(Image.open('TUBES-PROKOM/bg/8.png').resize((1920, 1080), Image.LANCZOS))
     label_rek = tk.Label(frame_rekomen, image=gambar_rek)
     label_rek.pack(fill=tk.BOTH, expand=tk.YES)
     
