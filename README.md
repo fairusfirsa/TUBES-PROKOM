@@ -12,6 +12,6 @@ Aplikasi ini adalah aplikasi untuk menghitung pembayaran angsuran rumah pengguna
 4. Menghitung jumlah biaya angsuran rumah beserta sisa biaya angsuran
 5. Aplikasi ini dapat menyimpan riwayat pembayaran angsuran pengguna 
 # Flowchart
-![Flowchart Angsuran Rumah Kelompok 13](https://github.com/user-attachments/assets/6c959737-cd5f-4ffb-887d-ce943f22839f)![Uploading IMG-20241119-WA0020.jpg…]()
+![Flowchart CicilAman Kelompok 13 drawio](https://github.com/user-attachments/assets/9b8e9e4d-8771-48f3-bd51-1c4c43e34f61)
 
 Flowchart di atas menggambarkan tentang proses sistem angsuran rumah berlangsung. Dimulai dari memasukkan input data
