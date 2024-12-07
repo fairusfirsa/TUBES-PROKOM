@@ -22,7 +22,7 @@ rumah_data = [
         "nama": "Skyloft Villas",
         "lokasi": "jebres",
         "harga": "Rp 900.000.000",
-        "gambar": "TUBES-PROKOM/rumah/mewah 1.jpg",
+        "gambar": "rumah/mewah 1.jpg",
         "ukuran": "900 m²",
         "interior":"Semi Modern",
         "bank": "Bank BNI",
@@ -34,7 +34,7 @@ rumah_data = [
         "nama": "Aurora Residence",
         "lokasi": "Palur",
         "harga": "Rp 850.000.000",
-        "gambar": "TUBES-PROKOM/rumah/mewah 2.jpg",
+        "gambar": "rumah/mewah 2.jpg",
         "ukuran": "700 m²",
         "interior":"Modern",
         "bank": "Bank BRI",
@@ -46,7 +46,7 @@ rumah_data = [
         "nama": "Vista Prime",
         "lokasi": "Mojosongo",
         "harga": "Rp 1.000.000.000",
-        "gambar": "TUBES-PROKOM/rumah/mewah 3.jpg",
+        "gambar": "rumah/mewah 3.jpg",
         "ukuran": "900 m²",
         "interior":"Japanese",
         "bank": "Bank BSI",
@@ -58,7 +58,7 @@ rumah_data = [
         "nama": "Metro Edge",
         "lokasi": "Solo Baru",
         "harga": "Rp 1.200.000.000",
-        "gambar": "TUBES-PROKOM/rumah/mewah 4.jpg",
+        "gambar": "rumah/mewah 4.jpg",
         "ukuran": "900 m²",
         "interior":"Modern Futuristic",
         "bank": "Seabank",
@@ -70,7 +70,7 @@ rumah_data = [
         "nama": "Metro Edge",
         "lokasi": "Jebres",
         "harga": "Rp 900.000.000",
-        "gambar": "TUBES-PROKOM/rumah/mewah 5.jpg",
+        "gambar": "rumah/mewah 5.jpg",
         "ukuran": "800 m²",
         "interior":"Mansion",
         "bank": "Bank BNI",
@@ -83,7 +83,7 @@ rumah_data = [
         "nama": "Amara Luxe",
         "lokasi": "Kartasura",
         "harga": "Rp 950.000.000",
-        "gambar": "TUBES-PROKOM/rumah/mewah 6.jpg",
+        "gambar": "rumah/mewah 6.jpg",
         "ukuran": "950 m²",
         "interior":"Modern Futuristic",
         "bank": "Bank BNI",
@@ -105,7 +105,7 @@ def halaman_rumah(main):
     frame_rumah = tk.Frame(main, bg='black')
     frame_rumah.pack(expand=True, fill=tk.BOTH)
 
-    utama = ImageTk.PhotoImage(Image.open('TUBES-PROKOM/bg/7.png'))
+    utama = ImageTk.PhotoImage(Image.open('bg/7.png'))
     label_rum = tk.Label(frame_rumah, image=utama )
     label_rum.image = utama  
     label_rum.pack(fill=tk.BOTH, expand=tk.YES)
@@ -130,7 +130,7 @@ Harga: {rumah1['harga']}"""
     tk.Label(label_rum, text=info_rumah1, font=("Helvetica", 14), bg="#57a689", fg="white").place(relx=0.3, rely=0.61, anchor="center")
     CTkButton(
         label_rum, text="",
-        image=ImageTk.PhotoImage(Image.open("TUBES-PROKOM/bg/pilih.png").resize((300, 50), Image.LANCZOS)),  
+        image=ImageTk.PhotoImage(Image.open("bg/pilih.png").resize((300, 50), Image.LANCZOS)),  
         cursor='hand2', command=lambda: halaman_pembayaran(main, rumah1),
         fg_color="transparent", border_spacing=0
     ).place(relx=0.3, rely=0.78, anchor="center")
@@ -152,21 +152,21 @@ Harga: {rumah2['harga']}"""
     tk.Label(label_rum, text=info_rumah2, font=("Helvetica", 14), bg="#57a689", fg="white", relief="flat").place(relx=0.7, rely=0.61, anchor="center")
     CTkButton(
         label_rum, text="",  
-        image=ImageTk.PhotoImage(Image.open("TUBES-PROKOM/bg/pilih.png").resize((300, 50), Image.LANCZOS)),  
+        image=ImageTk.PhotoImage(Image.open("bg/pilih.png").resize((300, 50), Image.LANCZOS)),  
         cursor='hand2', command=lambda: halaman_pembayaran(main, rumah2),
         fg_color="transparent", border_spacing=0
     ).place(relx=0.7, rely=0.78, anchor="center")
 
     CTkButton(
         label_rum, text="",  
-        image=ImageTk.PhotoImage(Image.open("TUBES-PROKOM/bg/kir.png").resize((50, 50), Image.LANCZOS)),  
+        image=ImageTk.PhotoImage(Image.open("bg/kir.png").resize((50, 50), Image.LANCZOS)),  
         cursor='hand2', command=lambda: next_rumah(-2),
         fg_color="transparent", border_spacing=0
     ).place(relx=0.1, rely=0.45, anchor="center")
 
     CTkButton(
         label_rum, text="", 
-        image=ImageTk.PhotoImage(Image.open("TUBES-PROKOM/bg/kan.png").resize((50, 50), Image.LANCZOS)),  
+        image=ImageTk.PhotoImage(Image.open("bg/kan.png").resize((50, 50), Image.LANCZOS)),  
         cursor='hand2', command=lambda: next_rumah(2),
         fg_color="transparent", border_spacing=0
     ).place(relx=0.9, rely=0.45, anchor="center")
@@ -177,7 +177,7 @@ Harga: {rumah2['harga']}"""
         halaman_rumah(main)
         
             #  Quit
-    gambar_quit = Image.open('TUBES-PROKOM/bg/quit.png').resize((300, 60), Image.LANCZOS)
+    gambar_quit = Image.open('bg/quit.png').resize((300, 60), Image.LANCZOS)
     gambar_quit2 = ImageTk.PhotoImage(gambar_quit)
     tombolquit = CTkButton(
         label_rum, text="", image=gambar_quit2, cursor='hand2',
@@ -195,7 +195,7 @@ def halaman_pembayaran(main, rumah):
     frame_pembayaran.pack(expand=True, fill=tk.BOTH)
     
     try:
-        background_image = Image.open("TUBES-PROKOM/bg/9.png")  
+        background_image = Image.open("bg/9.png")  
         bg_image_resized = background_image.resize((main.winfo_width(), main.winfo_height()), Image.LANCZOS)
         bg_latar = ImageTk.PhotoImage(bg_image_resized)
         label_bg = tk.Label(frame_pembayaran, image=bg_latar)
@@ -255,7 +255,7 @@ def halaman_pilihan_pembayaran(main, rumah):
     frame_pilihan.pack(expand=True, fill=tk.BOTH)
 
     try:
-        bayar_bg = Image.open("TUBES-PROKOM/bg/10.png") 
+        bayar_bg = Image.open("bg/10.png") 
         bayar_bg_resize = bayar_bg.resize((main.winfo_width(), main.winfo_height()), Image.LANCZOS)
         bg_belakang = ImageTk.PhotoImage(bayar_bg_resize)
         label_buy = tk.Label(frame_pilihan, image=bg_belakang)
@@ -282,7 +282,7 @@ def halaman_pilihan_pembayaran(main, rumah):
         halaman_cicilan(main, rumah, email)
 
     # Tombol cicil
-    gambar_cicil = Image.open('TUBES-PROKOM/bg/cicil.png').resize((300, 60), Image.LANCZOS)
+    gambar_cicil = Image.open('bg/cicil.png').resize((300, 60), Image.LANCZOS)
     gambar_cicil2 = ImageTk.PhotoImage(gambar_cicil)
     tombolcicil = CTkButton(
         frame_pilihan, text="", image=gambar_cicil2, cursor='hand2',
@@ -291,7 +291,7 @@ def halaman_pilihan_pembayaran(main, rumah):
     tombolcicil.place(relx=0.5, rely=0.55, anchor="center")
     
     # Tmbl lunas
-    gambar_lunas = Image.open('TUBES-PROKOM/bg/lunas.png').resize((300, 60), Image.LANCZOS)
+    gambar_lunas = Image.open('bg/lunas.png').resize((300, 60), Image.LANCZOS)
     gambar_lunas2= ImageTk.PhotoImage(gambar_lunas)
     tombollunas = CTkButton(
         frame_pilihan, text="", image=gambar_lunas2, cursor='hand2',
@@ -389,7 +389,7 @@ def halaman_lunas(main, rumah, email):
     frame_lunas.pack(expand=True, fill=tk.BOTH)
     
     try:
-        lunas_bg = Image.open("TUBES-PROKOM/bg/11.png") 
+        lunas_bg = Image.open("bg/11.png") 
         lunas_bg_resize = lunas_bg.resize((main.winfo_width(), main.winfo_height()), Image.LANCZOS)
         lunas_bel = ImageTk.PhotoImage(lunas_bg_resize)
         label_lun = tk.Label(frame_lunas, image=lunas_bel)
@@ -502,7 +502,7 @@ def halaman_cicilan(main, rumah, email):
     frame_perhitungan.pack(expand=True, fill=tk.BOTH)
     
     try:
-        cicil_bg = Image.open("TUBES-PROKOM/bg/12.png") 
+        cicil_bg = Image.open("bg/12.png") 
         cicil_bg_resize = cicil_bg.resize((main.winfo_width(), main.winfo_height()), Image.LANCZOS)
         cic = ImageTk.PhotoImage(cicil_bg_resize)
         cicil_cil = tk.Label(frame_perhitungan, image=cic)
@@ -577,7 +577,7 @@ Pemilik Rekening: {rumah['pemilik']}"""
     frame_cici.pack(expand=True, fill=tk.BOTH)
     
     try:
-        cicilan2_bg = Image.open("TUBES-PROKOM/bg/13.png")  
+        cicilan2_bg = Image.open("bg/13.png")  
         cicilan2_bg_resize = cicilan2_bg.resize((main.winfo_width(), main.winfo_height()), Image.LANCZOS)
         cica = ImageTk.PhotoImage(cicilan2_bg_resize)
         cicilan_cil = tk.Label(frame_cici, image=cica)
