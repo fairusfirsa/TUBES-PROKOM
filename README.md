@@ -12,4 +12,4 @@ Aplikasi ini adalah sebuah system dengan dua fitur utama, yaitu menghitung angsu
 4. Aplikasi ini menyediakan pembayaran rumah dari rekomendasi yang diberikan dengan berbagai pilihan pembayaran
 5. Aplikasi ini dapatn mengirim data hasil pembayaran rumah ke Email pengguna
 # Flowchart
-![Flowchart CicilAman Kelompok 13 drawio](https://github.com/user-attachments/assets/9b8e9e4d-8771-48f3-bd51-1c4c43e34f61)
+![Flowchart CicilAman drawio](https://github.com/user-attachments/assets/27d6d044-a502-442a-8670-686f3980eacb)
