@@ -13,5 +13,5 @@ Aplikasi ini adalah sebuah system dengan dua fitur utama, yaitu menghitung angsu
 5. Aplikasi ini dapatn mengirim data hasil pembayaran rumah ke Email pengguna
 # Flowchart
 ![Flowchart CicilAman drawio](https://github.com/user-attachments/assets/27d6d044-a502-442a-8670-686f3980eacb)
-# SITEMAP
+# SiteMap
 ![Sitemap CicilAman Kelompok 13](https://github.com/user-attachments/assets/b0f0f7bc-a039-4cb7-b83e-8cf30dc8a830)
