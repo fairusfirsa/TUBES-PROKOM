@@ -22,7 +22,7 @@ rumah_data = [
         "nama": "Rumah Angin Lembut",
         "lokasi": "Palur Utara",
         "harga": "Rp 499.000.000",
-        "gambar": "TUBES-PROKOM/rumah/rmh 250-500 6.jpg",
+        "gambar": "rumah/rmh 250-500 6.jpg",
         "ukuran": "150 m²",
         "interior":"Semi Modern",
         "bank": "Bank BSI",
@@ -34,7 +34,7 @@ rumah_data = [
         "nama": "Rumah Matahari Senja",
         "lokasi": "Sumber",
         "harga": "Rp 450.000.000",
-        "gambar": "TUBES-PROKOM/rumah/rmh 250 500 2.jpg",
+        "gambar": "rumah/rmh 250 500 2.jpg",
         "ukuran": "300 m²",
         "interior":"Modern",
         "bank": "Bank BNI",
@@ -46,7 +46,7 @@ rumah_data = [
         "nama": "Rumah Pelangi Damai",
         "lokasi": "Mojosongo",
         "harga": "Rp .300.000.000",
-        "gambar": "TUBES-PROKOM/rumah/rmh 250-500 3.jpg",
+        "gambar": "rumah/rmh 250-500 3.jpg",
         "ukuran": "400 m²",
         "interior":"Japanese",
         "bank": "Bank BRI",
@@ -58,7 +58,7 @@ rumah_data = [
         "nama": "Luxora Heights House",
         "lokasi": "Solo Baru",
         "harga": "Rp 250.000.000",
-        "gambar": "TUBES-PROKOM/rumah/rmh 250-500 4.jpg",
+        "gambar": "rumah/rmh 250-500 4.jpg",
         "ukuran": "200 m²",
         "interior":"Modern Futuristic",
         "bank": "Seabank",
@@ -70,7 +70,7 @@ rumah_data = [
         "nama": "Zenith Square Village",
         "lokasi": "Jebres",
         "harga": "Rp 350.000.000",
-        "gambar": "TUBES-PROKOM/rumah/rmh 250-500 5.jpg",
+        "gambar": "rumah/rmh 250-500 5.jpg",
         "ukuran": "130 m²",
         "interior":"Minimalist",
         "bank": "Bank BNI",
@@ -83,7 +83,7 @@ rumah_data = [
         "nama": "Rumah Pondok Kenangan",
         "lokasi": "Kartasura",
         "harga": "Rp 400.000.000",
-        "gambar": "TUBES-PROKOM/rumah/rmh 250-500 1.jpg",
+        "gambar": "rumah/rmh 250-500 1.jpg",
         "ukuran": "220 m²",
         "interior":"Minimalist",
         "bank": "Bank BRI",
@@ -105,7 +105,7 @@ def halaman_rumah(main):
     frame_rumah = tk.Frame(main, bg='black')
     frame_rumah.pack(expand=True, fill=tk.BOTH)
 
-    utama = ImageTk.PhotoImage(Image.open('TUBES-PROKOM/bg/7.png'))
+    utama = ImageTk.PhotoImage(Image.open('bg/7.png'))
     label_rum = tk.Label(frame_rumah, image=utama )
     label_rum.image = utama  
     label_rum.pack(fill=tk.BOTH, expand=tk.YES)
@@ -130,7 +130,7 @@ Harga: {rumah1['harga']}"""
     tk.Label(label_rum, text=info_rumah1, font=("Helvetica", 14), bg="#57a689", fg="white").place(relx=0.3, rely=0.61, anchor="center")
     CTkButton(
         label_rum, text="",
-        image=ImageTk.PhotoImage(Image.open("TUBES-PROKOM/bg/pilih.png").resize((300, 50), Image.LANCZOS)),  
+        image=ImageTk.PhotoImage(Image.open("bg/pilih.png").resize((300, 50), Image.LANCZOS)),  
         cursor='hand2', command=lambda: halaman_pembayaran(main, rumah1),
         fg_color="transparent", border_spacing=0
     ).place(relx=0.3, rely=0.78, anchor="center")
@@ -152,21 +152,21 @@ Harga: {rumah2['harga']}"""
     tk.Label(label_rum, text=info_rumah2, font=("Helvetica", 14), bg="#57a689", fg="white", relief="flat").place(relx=0.7, rely=0.61, anchor="center")
     CTkButton(
         label_rum, text="",  
-        image=ImageTk.PhotoImage(Image.open("TUBES-PROKOM/bg/pilih.png").resize((300, 50), Image.LANCZOS)),  
+        image=ImageTk.PhotoImage(Image.open("bg/pilih.png").resize((300, 50), Image.LANCZOS)),  
         cursor='hand2', command=lambda: halaman_pembayaran(main, rumah2),
         fg_color="transparent", border_spacing=0
     ).place(relx=0.7, rely=0.78, anchor="center")
 
     CTkButton(
         label_rum, text="",  
-        image=ImageTk.PhotoImage(Image.open("TUBES-PROKOM/bg/kir.png").resize((50, 50), Image.LANCZOS)),  
+        image=ImageTk.PhotoImage(Image.open("bg/kir.png").resize((50, 50), Image.LANCZOS)),  
         cursor='hand2', command=lambda: next_rumah(-2),
         fg_color="transparent", border_spacing=0
     ).place(relx=0.1, rely=0.45, anchor="center")
 
     CTkButton(
         label_rum, text="", 
-        image=ImageTk.PhotoImage(Image.open("TUBES-PROKOM/bg/kan.png").resize((50, 50), Image.LANCZOS)),  
+        image=ImageTk.PhotoImage(Image.open("bg/kan.png").resize((50, 50), Image.LANCZOS)),  
         cursor='hand2', command=lambda: next_rumah(2),
         fg_color="transparent", border_spacing=0
     ).place(relx=0.9, rely=0.45, anchor="center")
@@ -177,7 +177,7 @@ Harga: {rumah2['harga']}"""
         halaman_rumah(main)
         
             # Tombol Quit
-    gambar_quit = Image.open('TUBES-PROKOM/bg/quit.png').resize((300, 60), Image.LANCZOS)
+    gambar_quit = Image.open('bg/quit.png').resize((300, 60), Image.LANCZOS)
     gambar_quit2 = ImageTk.PhotoImage(gambar_quit)
     tombolquit = CTkButton(
         label_rum, text="", image=gambar_quit2, cursor='hand2',
@@ -196,7 +196,7 @@ def halaman_pembayaran(main, rumah):
     frame_pembayaran.pack(expand=True, fill=tk.BOTH)
     
     try:
-        background_image = Image.open("TUBES-PROKOM/bg/9.png")  
+        background_image = Image.open("bg/9.png")  
         bg_image_resized = background_image.resize((main.winfo_width(), main.winfo_height()), Image.LANCZOS)
         bg_latar = ImageTk.PhotoImage(bg_image_resized)
         label_bg = tk.Label(frame_pembayaran, image=bg_latar)
