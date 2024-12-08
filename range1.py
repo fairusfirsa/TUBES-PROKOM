@@ -403,7 +403,8 @@ def halaman_lunas(main, rumah, email):
     info_rumah = f"""Nama: {rumah['nama']}
 Bank Tujuan: {rumah['bank']}
 Nomor Rekening: {rumah['rekening']}
-Pemilik Rekening: {rumah['pemilik']}"""
+Pemilik Rekening: {rumah['pemilik']}
+Harga Rumah: {rumah['harga']}"""
     tk.Label(frame_lunas, text=info_rumah, font=("Helvetica", 18,"bold"), bg="#d6e4e4", fg="#545454", justify="left").place(relx=0.24, rely=0.726,anchor="center")
 
     def upload_proof():
