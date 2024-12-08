@@ -13,7 +13,7 @@ Aplikasi ini adalah sebuah system dengan dua fitur utama, yaitu menghitung angsu
 5. Aplikasi ini menyediakan pembayaran rumah dari rekomendasi yang diberikan dengan berbagai pilihan pembayaran
 6. Aplikasi ini dapat mengirim data hasil pembayaran rumah ke Email pengguna
 
-#Libary
+# Libary
 1. Tkinter
 2. Costumtkinter
 3. tkinter.messagebox
