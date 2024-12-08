@@ -11,7 +11,7 @@ Aplikasi ini adalah sebuah system dengan dua fitur utama, yaitu menghitung angsu
 3. Aplikasi ini dapat mengirim data hasil perhitungan angsuran ke Email pengguna
 4. Aplikasi ini dapat memberikan rekomendasi rumah dengan berbagai varian harga dan informasi yang lengkap
 5. Aplikasi ini menyediakan pembayaran rumah dari rekomendasi yang diberikan dengan berbagai pilihan pembayaran
-6. Aplikasi ini dapatn mengirim data hasil pembayaran rumah ke Email pengguna
+6. Aplikasi ini dapat mengirim data hasil pembayaran rumah ke Email pengguna
 # Flowchart
 ![flowchart cicilaman kelompok 13 drawio](https://github.com/user-attachments/assets/6d90a027-dc89-4a9e-9526-d55ce4bcaa42)
 
