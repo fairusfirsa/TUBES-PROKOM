@@ -1,19 +1,13 @@
 import tkinter as tk
 from PIL import Image, ImageTk
-from customtkinter import CTkButton, CTkEntry, CTkComboBox
+from customtkinter import CTkButton, CTkEntry
 from tkinter import messagebox, filedialog
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
-import os
-import csv
-from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import letter
-from reportlab.lib import colors
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
-from reportlab.lib.styles import getSampleStyleSheet
+
 
 
 # Data rekomendasi rumah
@@ -256,7 +250,7 @@ def halaman_pilihan_pembayaran(main, rumah):
     frame_pilihan.pack(expand=True, fill=tk.BOTH)
 
     try:
-        bayar_bg = Image.open("TUBES-PROKOM/bg/10.png") 
+        bayar_bg = Image.open("bg/10.png") 
         bayar_bg_resize = bayar_bg.resize((main.winfo_width(), main.winfo_height()), Image.LANCZOS)
         bg_belakang = ImageTk.PhotoImage(bayar_bg_resize)
         label_buy = tk.Label(frame_pilihan, image=bg_belakang)
@@ -283,7 +277,7 @@ def halaman_pilihan_pembayaran(main, rumah):
         halaman_cicilan(main, rumah, email)
 
     # Tombol cicil
-    gambar_cicil = Image.open('TUBES-PROKOM/bg/cicil.png').resize((300, 60), Image.LANCZOS)
+    gambar_cicil = Image.open('bg/cicil.png').resize((300, 60), Image.LANCZOS)
     gambar_cicil2 = ImageTk.PhotoImage(gambar_cicil)
     tombolcicil = CTkButton(
         frame_pilihan, text="", image=gambar_cicil2, cursor='hand2',
@@ -292,7 +286,7 @@ def halaman_pilihan_pembayaran(main, rumah):
     tombolcicil.place(relx=0.5, rely=0.55, anchor="center")
     
     # Tombol lunas
-    gambar_lunas = Image.open('TUBES-PROKOM/bg/lunas.png').resize((300, 60), Image.LANCZOS)
+    gambar_lunas = Image.open('bg/lunas.png').resize((300, 60), Image.LANCZOS)
     gambar_lunas2= ImageTk.PhotoImage(gambar_lunas)
     tombollunas = CTkButton(
         frame_pilihan, text="", image=gambar_lunas2, cursor='hand2',
@@ -303,9 +297,7 @@ def halaman_pilihan_pembayaran(main, rumah):
     
     
 def create_pdf_report_with_proof(data, payment_type, filename):
-    """
-    Modified PDF creation to include payment proof image
-    """
+    
     from reportlab.lib.pagesizes import letter
     from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Image
     from reportlab.lib import colors
@@ -390,7 +382,7 @@ def halaman_lunas(main, rumah, email):
     frame_lunas.pack(expand=True, fill=tk.BOTH)
     
     try:
-        lunas_bg = Image.open("TUBES-PROKOM/bg/11.png") 
+        lunas_bg = Image.open("bg/11.png") 
         lunas_bg_resize = lunas_bg.resize((main.winfo_width(), main.winfo_height()), Image.LANCZOS)
         lunas_bel = ImageTk.PhotoImage(lunas_bg_resize)
         label_lun = tk.Label(frame_lunas, image=lunas_bel)
@@ -412,7 +404,8 @@ def halaman_lunas(main, rumah, email):
     info_rumah = f"""Nama: {rumah['nama']}
 Bank Tujuan: {rumah['bank']}
 Nomor Rekening: {rumah['rekening']}
-Pemilik Rekening: {rumah['pemilik']}"""
+Pemilik Rekening: {rumah['pemilik']}
+Harga Rumah: {rumah['harga']}"""
     tk.Label(frame_lunas, text=info_rumah, font=("Helvetica", 18,"bold"), bg="#d6e4e4", fg="#545454", justify="left").place(relx=0.24, rely=0.726,anchor="center")
 
     def upload_proof():
@@ -503,7 +496,7 @@ def halaman_cicilan(main, rumah, email):
     frame_perhitungan.pack(expand=True, fill=tk.BOTH)
     
     try:
-        cicil_bg = Image.open("TUBES-PROKOM/bg/12.png") 
+        cicil_bg = Image.open("bg/12.png") 
         cicil_bg_resize = cicil_bg.resize((main.winfo_width(), main.winfo_height()), Image.LANCZOS)
         cic = ImageTk.PhotoImage(cicil_bg_resize)
         cicil_cil = tk.Label(frame_perhitungan, image=cic)
@@ -578,7 +571,7 @@ Pemilik Rekening: {rumah['pemilik']}"""
     frame_cici.pack(expand=True, fill=tk.BOTH)
     
     try:
-        cicilan2_bg = Image.open("TUBES-PROKOM/bg/13.png")  
+        cicilan2_bg = Image.open("bg/13.png")  
         cicilan2_bg_resize = cicilan2_bg.resize((main.winfo_width(), main.winfo_height()), Image.LANCZOS)
         cica = ImageTk.PhotoImage(cicilan2_bg_resize)
         cicilan_cil = tk.Label(frame_cici, image=cica)
