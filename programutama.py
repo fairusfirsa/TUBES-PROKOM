@@ -1,6 +1,6 @@
 import tkinter as tk
 from PIL import Image, ImageTk
-from customtkinter import CTkButton, CTkEntry
+from customtkinter import CTkButton
 from tkinter import messagebox
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
