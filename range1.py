@@ -1,19 +1,12 @@
 import tkinter as tk
 from PIL import Image, ImageTk
-from customtkinter import CTkButton, CTkEntry, CTkComboBox
+from customtkinter import CTkButton, CTkEntry
 from tkinter import messagebox, filedialog
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
-import os
-import csv
-from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import letter
-from reportlab.lib import colors
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
-from reportlab.lib.styles import getSampleStyleSheet
 
 
 # Data rekomendasi rumah
@@ -303,9 +296,7 @@ def halaman_pilihan_pembayaran(main, rumah):
     
     
 def create_pdf_report_with_proof(data, payment_type, filename):
-    """
-    Modified PDF creation to include payment proof image
-    """
+ 
     from reportlab.lib.pagesizes import letter
     from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Image
     from reportlab.lib import colors
@@ -672,7 +663,7 @@ Pemilik Rekening: {rumah['pemilik']}"""
 
         halaman_rumah(main)
 
-    CTkButton(frame_cici, text="Konfirmasi Pembayaran Lunas", 
+    CTkButton(frame_cici, text="Konfirmasi Pembayaran", 
               font=("Helvetica", 25), 
               fg_color="#57a689",
               hover_color="#333333",
