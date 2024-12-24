@@ -49,8 +49,8 @@ def halaman1(main):
     tombolnext.pack(padx=180, pady=170, anchor='s', side='right')
 
 # buat file csv
-if not os.path.exists('abc.csv'):
-    with open('abc.csv', 'w', newline='') as file:
+if not os.path.exists('data_pengguna.csv'):
+    with open('data_pengguna.csv', 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(['ID', 'Email', 'Name', 'Password'])  
         
@@ -123,7 +123,7 @@ def signin(email_user, pw_user, main):
         return
 
     try:
-        with open('abc.csv', 'r') as file:
+        with open('data_pengguna.csv', 'r') as file:
             reader = csv.reader(file, delimiter=',')
             next(reader) 
 
@@ -137,7 +137,7 @@ def signin(email_user, pw_user, main):
                         return
             messagebox.showerror('Sign In Error', 'Email tidak ditemukan!')
     except FileNotFoundError:
-        messagebox.showerror('Error', 'File abc.csv tidak ditemukan!')
+        messagebox.showerror('Error', 'File data_pengguna.csv tidak ditemukan!')
     except Exception as e:
         messagebox.showerror('Error', f'Terjadi kesalahan: {e}')
 
@@ -203,7 +203,7 @@ def signup(email_user, pw_user, name_user, main):
         return
 
     try:
-        with open('abc.csv', 'r') as file:
+        with open('data_pengguna.csv', 'r') as file:
             reader = csv.reader(file, delimiter=',')
             next(reader)
 
@@ -212,7 +212,7 @@ def signup(email_user, pw_user, name_user, main):
                     messagebox.showerror('Error', 'Email sudah terdaftar!')
                     return
 
-        with open('abc.csv', 'a', newline='') as file:
+        with open('data_pengguna.csv', 'a', newline='') as file:
             writer = csv.writer(file)
             writer.writerow([None, email, name, password])
             messagebox.showinfo('Success', 'Pendaftaran berhasil! Silakan login.')
