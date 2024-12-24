@@ -7,91 +7,26 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
+import csv
 
+# Membaca data rumah dari file CSV
+def load_rumah_data():
+    rumah_data = []
+    with open('data_rumah1.csv', mode='r', encoding='utf-8') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            rumah_data.append(row)
+    return rumah_data
 
-# Data rekomendasi rumah
-rumah_data = [
-    {
-        "nama": "Rumah Hijau Sentosa",
-        "lokasi": "Palur Utara",
-        "harga": "Rp 100.000.000",
-        "gambar": "rumah/gubug1.jpg",
-        "ukuran": "100 m²",
-        "interior":"Semi Modern",
-        "bank": "Bank BNI",
-        "rekening": "1234567890",
-        "pemilik": "Budi Santoso",
-        "nomor telp":"086482938798"
-    },
-    {
-        "nama": "Lentera Village",
-        "lokasi": "Colomadu",
-        "harga": "Rp 150.000.000",
-        "gambar": "rumah/gubug2.jpg",
-        "ukuran": "150 m²",
-        "interior":"Semi Modern",
-        "bank": "Bank BCA",
-        "rekening": "9876543210",
-        "pemilik": "Ani Setiawan",
-        "nomor telp":"0842671984"
-    },
-    {
-         "nama": "Dahlia Heights Residence",
-        "lokasi": "Jebres",
-        "harga": "Rp 200.000.000",
-        "gambar": "rumah/gubug3.jpg",
-        "ukuran": "100 m²",
-        "interior":"Minimalist",
-        "bank": "Bank Mandiri",
-        "rekening": "6738492784",
-        "pemilik": "Raisa",
-        "nomor telp":"087462873526"
-    },
-        {
-        "nama": "Sapphire Garden",
-        "lokasi": "Banyumanik",
-        "harga": "Rp 100.000.000",
-        "gambar": "rumah/gubug4.jpg",
-        "ukuran": "200 m²",
-        "interior":"Semi Minimalist",
-        "bank": "Bank BCA",
-        "rekening": "5647391829",
-        "pemilik": "Umar",
-        "nomor telp":"089674537845"
-    },
-        {
-        "nama": "Rumah Sejahtera Bliss",
-        "lokasi": "Solo Barat",
-        "harga": "Rp 250.000.000",
-        "gambar": "rumah/gubug5.jpg",
-        "ukuran": "200 m²",
-        "interior":"Semi Modern",
-        "bank": "Bank BNI",
-        "rekening": "42673891029",
-        "pemilik": "Budi",
-        "nomor telp":"087634526783"
-
-    },
-            {
-        "nama": "Rumah Citra Lestari",
-        "lokasi": "Mojosongo",
-        "harga": "Rp 200.000.000",
-        "gambar": "rumah/gubug6.jpg",
-        "ukuran": "100 m²",
-        "interior":"Semi Modern",
-        "bank": "Bank BSI",
-        "rekening": "7839201839",
-        "pemilik": "Vito",
-        "nomor telp":"087809875674"
-    }
-    
-]
-
-current_index = 0
+# Global untuk menyimpan data rumah
+rumah_data = load_rumah_data()
+current_index = 0 
 
 def halaman_rumah(main):
     global bg_rekomen1, bg_rekomen2, current_index
-
+    
+    from programutama import halaman_rekomen
+     
     for widget in main.winfo_children():
         widget.destroy()
 
@@ -99,13 +34,13 @@ def halaman_rumah(main):
     frame_rumah.pack(expand=True, fill=tk.BOTH)
 
     utama = ImageTk.PhotoImage(Image.open('bg/7.png'))
-    label_rum = tk.Label(frame_rumah, image=utama )
+    label_rum = tk.Label(frame_rumah, image=utama)
     label_rum.image = utama  
     label_rum.pack(fill=tk.BOTH, expand=tk.YES)
 
     rumah1 = rumah_data[current_index]
     rumah2 = rumah_data[(current_index + 1) % len(rumah_data)] 
-    
+
     try:
         gambar_rumah1 = Image.open(rumah1["gambar"]).resize((250, 250), Image.LANCZOS)
         bg_rekomen1 = ImageTk.PhotoImage(gambar_rumah1)
@@ -127,7 +62,6 @@ Harga: {rumah1['harga']}"""
         cursor='hand2', command=lambda: halaman_pembayaran(main, rumah1),
         fg_color="transparent", border_spacing=0
     ).place(relx=0.3, rely=0.78, anchor="center")
-
     try:
         gambar_rumah2 = Image.open(rumah2["gambar"]).resize((250, 250), Image.LANCZOS)
         bg_rekomen2 = ImageTk.PhotoImage(gambar_rumah2)
@@ -144,12 +78,16 @@ Interior: {rumah2['interior']}
 Harga: {rumah2['harga']}"""
     tk.Label(label_rum, text=info_rumah2, font=("Helvetica", 14), bg="#57a689", fg="white", relief="flat").place(relx=0.7, rely=0.61, anchor="center")
     CTkButton(
-        label_rum, text="",  
+        label_rum, text="",
         image=ImageTk.PhotoImage(Image.open("bg/pilih.png").resize((300, 50), Image.LANCZOS)),  
         cursor='hand2', command=lambda: halaman_pembayaran(main, rumah2),
         fg_color="transparent", border_spacing=0
     ).place(relx=0.7, rely=0.78, anchor="center")
 
+    def next_rumah(step):
+        global current_index
+        current_index = (current_index + step) % len(rumah_data)
+        halaman_rumah(main)
     CTkButton(
         label_rum, text="",  
         image=ImageTk.PhotoImage(Image.open("bg/kir.png").resize((50, 50), Image.LANCZOS)),  
@@ -163,21 +101,24 @@ Harga: {rumah2['harga']}"""
         cursor='hand2', command=lambda: next_rumah(2),
         fg_color="transparent", border_spacing=0
     ).place(relx=0.9, rely=0.45, anchor="center")
-    
-    def next_rumah(step):
-        global current_index
-        current_index = (current_index + step) % len(rumah_data)
-        halaman_rumah(main)
-        
-            # Tombol Quit
+
+    # Tombol Quit
     gambar_quit = Image.open('bg/quit.png').resize((300, 60), Image.LANCZOS)
     gambar_quit2 = ImageTk.PhotoImage(gambar_quit)
     tombolquit = CTkButton(
         label_rum, text="", image=gambar_quit2, cursor='hand2',
         border_spacing=0, command=main.quit, fg_color="transparent"
     )
-    tombolquit.place(relx=0.85, rely=0.1, anchor="center")
+    tombolquit.place(relx=0.85, rely=0.1, anchor="center")   
     
+    gambar_back = Image.open('bg/kembali.png').resize((300, 60), Image.LANCZOS)
+    gambar_back2 = ImageTk.PhotoImage(gambar_back)
+    tombolback = CTkButton(
+        label_rum, text="", image=gambar_back2, cursor='hand2',
+        border_spacing=0, command=lambda:halaman_rekomen(main), fg_color="transparent"
+    )
+    tombolback.place(relx=0.15, rely=0.1, anchor="center")
+
         
 def halaman_pembayaran(main, rumah):
     global bg_rumah, bg_latar
@@ -240,7 +181,7 @@ Pemilik Rekening: {rumah['pemilik']}"""
     back_button.place(relx=0.55, rely=0.68, anchor="center")  
     
 def halaman_pilihan_pembayaran(main, rumah):
-    global bg_belakang
+    global bg_belakang, gambar_backk
 
     for widget in main.winfo_children():
         widget.destroy()
@@ -259,7 +200,6 @@ def halaman_pilihan_pembayaran(main, rumah):
 
     entry_email = CTkEntry(frame_pilihan, font=("Helvetica", 20), width=400, justify="center")
     entry_email.place(relx=0.5, rely=0.35, anchor="center")
-    
     
     def go_to_lunas():
         email = entry_email.get()
@@ -286,15 +226,23 @@ def halaman_pilihan_pembayaran(main, rumah):
     
     # Tombol lunas
     gambar_lunas = Image.open('bg/lunas.png').resize((300, 60), Image.LANCZOS)
-    gambar_lunas2= ImageTk.PhotoImage(gambar_lunas)
+    gambar_lunas2 = ImageTk.PhotoImage(gambar_lunas)
     tombollunas = CTkButton(
         frame_pilihan, text="", image=gambar_lunas2, cursor='hand2',
         border_spacing=0, command=go_to_lunas,
         fg_color="transparent"
     )
     tombollunas.place(relx=0.5, rely=0.65, anchor="center")      
-    
-    
+
+    # Tombol kembali
+    gambar_backk = Image.open('bg/kembali.png').resize((300, 60), Image.LANCZOS)
+    gambar_backk2 = ImageTk.PhotoImage(gambar_backk)
+    tombolback = CTkButton(
+        frame_pilihan, text="", image=gambar_backk2, cursor='hand2',
+        border_spacing=0, command=lambda: halaman_pembayaran(main, rumah), fg_color="transparent"
+    )
+    tombolback.place(relx=0.15, rely=0.1, anchor="center")
+
 def create_pdf_report_with_proof(data, payment_type, filename):
  
     from reportlab.lib.pagesizes import letter
@@ -370,115 +318,6 @@ def send_email_with_attachment(recipient_email, filename):
     except Exception as e:
         messagebox.showerror("Error", f"Gagal mengirim email: {str(e)}")
         
-
-def halaman_lunas(main, rumah, email):
-    global lunas_bel
-
-    for widget in main.winfo_children():
-        widget.destroy()
-
-    frame_lunas = tk.Frame(main)
-    frame_lunas.pack(expand=True, fill=tk.BOTH)
-    
-    try:
-        lunas_bg = Image.open("bg/11.png") 
-        lunas_bg_resize = lunas_bg.resize((main.winfo_width(), main.winfo_height()), Image.LANCZOS)
-        lunas_bel = ImageTk.PhotoImage(lunas_bg_resize)
-        label_lun = tk.Label(frame_lunas, image=lunas_bel)
-        label_lun.place(relx=0, rely=0, relwidth=1, relheight=1)
-    except FileNotFoundError:
-        print("Gambar latar belakang tidak ditemukan!")
-        
-    try:
-        gamb_rumah = Image.open(rumah["gambar"]).resize((220, 220), Image.LANCZOS)
-        bg_rum = ImageTk.PhotoImage(gamb_rumah)
-        label_gam_rum = tk.Label(frame_lunas, image=bg_rum, border=0)
-        label_gam_rum.image = bg_rum
-        label_gam_rum.place(relx=0.235, rely=0.415, anchor="center") 
-    except FileNotFoundError:
-        tk.Label(frame_lunas, text="Gambar tidak ditemukan!", font=("Helvetica", 16), fg="red", bg="white").place(x=50, y=50)
-
-    uploaded_proof_path = [None]
-
-    info_rumah = f"""Nama: {rumah['nama']}
-Bank Tujuan: {rumah['bank']}
-Nomor Rekening: {rumah['rekening']}
-Pemilik Rekening: {rumah['pemilik']}
-Harga Rumah: {rumah['harga']}"""
-    tk.Label(frame_lunas, text=info_rumah, font=("Helvetica", 18,"bold"), bg="#d6e4e4", fg="#545454", justify="left").place(relx=0.24, rely=0.726,anchor="center")
-
-    def upload_proof():
-        file_path = filedialog.askopenfilename(filetypes=[("Image Files", "*.png;*.jpg;*.jpeg")])
-        if file_path:
-            uploaded_proof_path[0] = file_path
-            
-            try:
-                img = Image.open(file_path)
-                img.thumbnail((200, 200))
-                photo = ImageTk.PhotoImage(img)
-                proof_preview.configure(image=photo)
-                proof_preview.image = photo
-                upload_button.configure(text="Ganti Bukti Pembayaran")
-            except Exception as e:
-                messagebox.showerror("Error", f"Gagal memuat gambar: {e}")
-
-    upload_button = CTkButton(frame_lunas, text="Upload Bukti Pembayaran", 
-                               font=("Helvetica", 25),
-                               fg_color="#57a689",
-                               hover_color= "#333333",
-                               text_color="white",
-                               command=upload_proof)
-    upload_button.place(relx=0.772, rely=0.32, anchor="center")
-
-    proof_preview = tk.Label(frame_lunas)
-    proof_preview.place(relx=0.77, rely=0.48, anchor="center")
-
-    entry_nama_pemilik = CTkEntry(frame_lunas, font=("Helvetica", 20), width=400, justify="center")
-    entry_nama_pemilik.place(relx=0.505, rely=0.36, anchor="center")
-
-    entry_nominal = CTkEntry(frame_lunas, font=("Helvetica", 20), width=400, justify="center")
-    entry_nominal.place(relx=0.505, rely=0.5, anchor="center")
-
-    def konfirmasi_lunas():
-      
-        if uploaded_proof_path[0] is None:
-            messagebox.showerror("Error", "Harap upload bukti pembayaran!")
-            return
-
-        if not entry_nama_pemilik.get():
-            messagebox.showerror("Error", "Nama Pemilik Pembayar harus diisi!")
-            return
-
-        if not entry_nominal.get() or not entry_nominal.get().isdigit():
-            messagebox.showerror("Error", "Nominal Pembayaran harus diisi dan berupa angka!")
-            return
-
-        nominal = entry_nominal.get()
-        
-        payment_data = {
-            'nama_pemilik': entry_nama_pemilik.get(),
-            'nominal': nominal,
-            'bukti_pembayaran': uploaded_proof_path[0],
-            'bank_tujuan': rumah['bank'],
-            'rekening_tujuan': rumah['rekening']
-        }
-
-        pdf_filename = f"Pembayaran_Lunas_{rumah['nama']}.pdf"
-        create_pdf_report_with_proof(payment_data, "Lunas", pdf_filename)
-
-        send_email_with_attachment(email, pdf_filename)
-
-        messagebox.showinfo("Success", "Pembayaran lunas berhasil dan email telah dikirim!")
-        halaman_rumah(main)  
-
-
-    CTkButton(frame_lunas, text="Konfirmasi Pembayaran Lunas", 
-              font=("Helvetica", 25), 
-              fg_color="#57a689",
-              hover_color="#333333",
-              text_color="white",
-              command=konfirmasi_lunas).place(relx=0.5, rely=0.58, anchor="center")
-
 def halaman_cicilan(main, rumah, email):
     global cic
 
@@ -552,6 +391,14 @@ def halaman_cicilan(main, rumah, email):
                            text_color="white",
                            command=hitung_cicilan)
     btn_hitung.place(relx=0.685, rely=0.67, anchor="center")
+    
+    gambar_backkk = Image.open('bg/kembali.png').resize((300, 60), Image.LANCZOS)
+    gambar_backkk2 = ImageTk.PhotoImage(gambar_backkk)
+    tombolback = CTkButton(
+        frame_perhitungan, text="", image=gambar_backkk2, cursor='hand2',
+        border_spacing=0, command=lambda: halaman_pilihan_pembayaran(main, rumah), fg_color="transparent"
+    )
+    tombolback.pack(padx=150, pady=50, anchor='s', side='left')   
 
 def halaman_cicilan2(main, rumah, email, nominal_cicilan=None):
     global cica
@@ -670,12 +517,145 @@ Pemilik Rekening: {rumah['pemilik']}"""
               hover_color="#333333",
               text_color="white",
               command=konfirmasi_cicilan).place(relx=0.508, rely=0.6, anchor="center")
+    
+    gambar_backkkk = Image.open('bg/kembali.png').resize((300, 60), Image.LANCZOS)
+    gambar_backkkk2 = ImageTk.PhotoImage(gambar_backkkk)
+    tombolback = CTkButton(
+        frame_cici, text="", image=gambar_backkkk2, cursor='hand2',
+        border_spacing=0, command=lambda: halaman_cicilan(main, rumah, email), fg_color="transparent"
+    )
+    tombolback.pack(padx=150, pady=50, anchor='s', side='left')   
+
+    # Tombol Quit
+    gambar_quit = Image.open('bg/quit.png').resize((300, 60), Image.LANCZOS)
+    gambar_quit2 = ImageTk.PhotoImage(gambar_quit)
+    tombolquit = CTkButton(
+        frame_cici, text="", image=gambar_quit2, cursor='hand2',
+        border_spacing=0, command=main.quit, fg_color="transparent"
+    )
+    tombolquit.pack(padx=150, pady=50, anchor='s', side='right')            
+
+def halaman_lunas(main, rumah, email):
+    global lunas_bel
+
+    for widget in main.winfo_children():
+        widget.destroy()
+
+    frame_lunas = tk.Frame(main)
+    frame_lunas.pack(expand=True, fill=tk.BOTH)
+    
+    try:
+        lunas_bg = Image.open("bg/11.png") 
+        lunas_bg_resize = lunas_bg.resize((main.winfo_width(), main.winfo_height()), Image.LANCZOS)
+        lunas_bel = ImageTk.PhotoImage(lunas_bg_resize)
+        label_lun = tk.Label(frame_lunas, image=lunas_bel)
+        label_lun.place(relx=0, rely=0, relwidth=1, relheight=1)
+    except FileNotFoundError:
+        print("Gambar latar belakang tidak ditemukan!")
+        
+    try:
+        gamb_rumah = Image.open(rumah["gambar"]).resize((220, 220), Image.LANCZOS)
+        bg_rum = ImageTk.PhotoImage(gamb_rumah)
+        label_gam_rum = tk.Label(frame_lunas, image=bg_rum, border=0)
+        label_gam_rum.image = bg_rum
+        label_gam_rum.place(relx=0.235, rely=0.415, anchor="center") 
+    except FileNotFoundError:
+        tk.Label(frame_lunas, text="Gambar tidak ditemukan!", font=("Helvetica", 16), fg="red", bg="white").place(x=50, y=50)
+
+    uploaded_proof_path = [None]
+
+    info_rumah = f"""Nama: {rumah['nama']}
+Bank Tujuan: {rumah['bank']}
+Nomor Rekening: {rumah['rekening']}
+Pemilik Rekening: {rumah['pemilik']}
+Harga Rumah: {rumah['harga']}"""
+    tk.Label(frame_lunas, text=info_rumah, font=("Helvetica", 18,"bold"), bg="#d6e4e4", fg="#545454", justify="left").place(relx=0.24, rely=0.726,anchor="center")
+
+    def upload_proof():
+        file_path = filedialog.askopenfilename(filetypes=[("Image Files", "*.png;*.jpg;*.jpeg")])
+        if file_path:
+            uploaded_proof_path[0] = file_path
+            
+            try:
+                img = Image.open(file_path)
+                img.thumbnail((200, 200))
+                photo = ImageTk.PhotoImage(img)
+                proof_preview.configure(image=photo)
+                proof_preview.image = photo
+                upload_button.configure(text="Ganti Bukti Pembayaran")
+            except Exception as e:
+                messagebox.showerror("Error", f"Gagal memuat gambar: {e}")
+
+    upload_button = CTkButton(frame_lunas, text="Upload Bukti Pembayaran", 
+                               font=("Helvetica", 25),
+                               fg_color="#57a689",
+                               hover_color= "#333333",
+                               text_color="white",
+                               command=upload_proof)
+    upload_button.place(relx=0.772, rely=0.32, anchor="center")
+
+    proof_preview = tk.Label(frame_lunas)
+    proof_preview.place(relx=0.77, rely=0.48, anchor="center")
+
+    entry_nama_pemilik = CTkEntry(frame_lunas, font=("Helvetica", 20), width=400, justify="center")
+    entry_nama_pemilik.place(relx=0.505, rely=0.36, anchor="center")
+
+    entry_nominal = CTkEntry(frame_lunas, font=("Helvetica", 20), width=400, justify="center")
+    entry_nominal.place(relx=0.505, rely=0.5, anchor="center")
+
+    def konfirmasi_lunas():
+      
+        if uploaded_proof_path[0] is None:
+            messagebox.showerror("Error", "Harap upload bukti pembayaran!")
+            return
+
+        if not entry_nama_pemilik.get():
+            messagebox.showerror("Error", "Nama Pemilik Pembayar harus diisi!")
+            return
+
+        if not entry_nominal.get() or not entry_nominal.get().isdigit():
+            messagebox.showerror("Error", "Nominal Pembayaran harus diisi dan berupa angka!")
+            return
+
+        nominal = entry_nominal.get()
+        
+        payment_data = {
+            'nama_pemilik': entry_nama_pemilik.get(),
+            'nominal': nominal,
+            'bukti_pembayaran': uploaded_proof_path[0],
+            'bank_tujuan': rumah['bank'],
+            'rekening_tujuan': rumah['rekening']
+        }
+
+        pdf_filename = f"Pembayaran_Lunas_{rumah['nama']}.pdf"
+        create_pdf_report_with_proof(payment_data, "Lunas", pdf_filename)
+
+        send_email_with_attachment(email, pdf_filename)
+
+        messagebox.showinfo("Success", "Pembayaran lunas berhasil dan email telah dikirim!")
+        halaman_rumah(main)  
 
 
-# Main Program remains the same
-if __name__ == "__main__":
-    root = tk.Tk()
-    root.title("Sistem Rekomendasi Rumah")
-    root.geometry("1920x1080")
-    halaman_rumah(root)
-    root.mainloop()                
+    CTkButton(frame_lunas, text="Konfirmasi Pembayaran Lunas", 
+              font=("Helvetica", 25), 
+              fg_color="#57a689",
+              hover_color="#333333",
+              text_color="white",
+              command=konfirmasi_lunas).place(relx=0.5, rely=0.58, anchor="center")
+
+    gambar_backkkk = Image.open('bg/kembali.png').resize((300, 60), Image.LANCZOS)
+    gambar_backkkk2 = ImageTk.PhotoImage(gambar_backkkk)
+    tombolback = CTkButton(
+        frame_lunas, text="", image=gambar_backkkk2, cursor='hand2',
+        border_spacing=0, command=lambda:halaman_pilihan_pembayaran(main, rumah), fg_color="transparent"
+    )
+    tombolback.pack(padx=150, pady=50, anchor='s', side='left')   
+
+    # Tombol Quit
+    gambar_quit = Image.open('bg/quit.png').resize((300, 60), Image.LANCZOS)
+    gambar_quit2 = ImageTk.PhotoImage(gambar_quit)
+    tombolquit = CTkButton(
+        frame_lunas, text="", image=gambar_quit2, cursor='hand2',
+        border_spacing=0, command=main.quit, fg_color="transparent"
+    )
+    tombolquit.pack(padx=150, pady=50, anchor='s', side='right')    

@@ -7,91 +7,25 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
+import csv
 
+# Membaca data rumah dari file CSV
+def load_rumah_data():
+    rumah_data = []
+    with open('data_rumah2.csv', mode='r', encoding='utf-8') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            rumah_data.append(row)
+    return rumah_data
 
-
-# Data rekomendasi rumah
-rumah_data = [
-    {
-        "nama": "Rumah Angin Lembut",
-        "lokasi": "Palur Utara",
-        "harga": "Rp 499.000.000",
-        "gambar": "rumah/rmh 250-500 6.jpg",
-        "ukuran": "150 m²",
-        "interior":"Semi Modern",
-        "bank": "Bank BSI",
-        "rekening": "6253728917",
-        "pemilik": "Wawan Sentosa",
-        "nomor telp":"086482938798"
-    },
-    {
-        "nama": "Rumah Matahari Senja",
-        "lokasi": "Sumber",
-        "harga": "Rp 450.000.000",
-        "gambar": "rumah/rmh 250 500 2.jpg",
-        "ukuran": "300 m²",
-        "interior":"Modern",
-        "bank": "Bank BNI",
-        "rekening": "5643654768",
-        "pemilik": "Siti Romlah",
-        "nomor telp":"0842671984"
-    },
-    {
-        "nama": "Rumah Pelangi Damai",
-        "lokasi": "Mojosongo",
-        "harga": "Rp .300.000.000",
-        "gambar": "rumah/rmh 250-500 3.jpg",
-        "ukuran": "400 m²",
-        "interior":"Japanese",
-        "bank": "Bank BRI",
-        "rekening": "2571536498",
-        "pemilik": "Vincent",
-        "nomor telp":"087618354612"
-    },
-    {
-        "nama": "Luxora Heights House",
-        "lokasi": "Solo Baru",
-        "harga": "Rp 250.000.000",
-        "gambar": "rumah/rmh 250-500 4.jpg",
-        "ukuran": "200 m²",
-        "interior":"Modern Futuristic",
-        "bank": "Seabank",
-        "rekening": "8329498193",
-        "pemilik": "Tyar",
-        "nomor telp":"08826417826"
-    },
-    {
-        "nama": "Zenith Square Village",
-        "lokasi": "Jebres",
-        "harga": "Rp 350.000.000",
-        "gambar": "rumah/rmh 250-500 5.jpg",
-        "ukuran": "130 m²",
-        "interior":"Minimalist",
-        "bank": "Bank BNI",
-        "rekening": "2873648162",
-        "pemilik": "Sumber Rejeki",
-        "nomor telp":"089129356472"
-
-    },
-    {
-        "nama": "Rumah Pondok Kenangan",
-        "lokasi": "Kartasura",
-        "harga": "Rp 400.000.000",
-        "gambar": "rumah/rmh 250-500 1.jpg",
-        "ukuran": "220 m²",
-        "interior":"Minimalist",
-        "bank": "Bank BRI",
-        "rekening": "8472651098",
-        "pemilik": "Sumiyah",
-        "nomor telp":"088279889713"
-    }
-    
-]
-
-current_index = 0
+# Global untuk menyimpan data rumah
+rumah_data = load_rumah_data()
+current_index = 0 
 
 def halaman_rumah(main):
     global bg_rekomen1, bg_rekomen2, current_index
+    
+    from programutama import halaman_rekomen
 
     for widget in main.winfo_children():
         widget.destroy()
@@ -178,6 +112,15 @@ Harga: {rumah2['harga']}"""
         border_spacing=0, command=main.quit, fg_color="transparent"
     )
     tombolquit.place(relx=0.85, rely=0.1, anchor="center")
+    
+    gambar_back = Image.open('bg/kembali.png').resize((300, 60), Image.LANCZOS)
+    gambar_back2 = ImageTk.PhotoImage(gambar_back)
+    tombolback = CTkButton(
+        label_rum, text="", image=gambar_back2, cursor='hand2',
+        border_spacing=0, command=lambda:halaman_rekomen(main), fg_color="transparent"
+    )
+    tombolback.place(relx=0.15, rely=0.1, anchor="center")
+
     
     
 def halaman_pembayaran(main, rumah):
@@ -293,9 +236,16 @@ def halaman_pilihan_pembayaran(main, rumah):
         border_spacing=0, command=go_to_lunas,
         fg_color="transparent"
     )
-    tombollunas.place(relx=0.5, rely=0.65, anchor="center")      
+    tombollunas.place(relx=0.5, rely=0.65, anchor="center")
     
-    
+    gambar_backk = Image.open('bg/kembali.png').resize((300, 60), Image.LANCZOS)
+    gambar_backk2 = ImageTk.PhotoImage(gambar_backk)
+    tombolback = CTkButton(
+        frame_pilihan, text="", image=gambar_backk2, cursor='hand2',
+        border_spacing=0, command=lambda: halaman_pembayaran(main, rumah), fg_color="transparent"
+    )
+    tombolback.place(relx=0.15, rely=0.1, anchor="center")
+ 
 def create_pdf_report_with_proof(data, payment_type, filename):
     
     from reportlab.lib.pagesizes import letter
@@ -479,7 +429,23 @@ Harga Rumah: {rumah['harga']}"""
               hover_color="#333333",
               text_color="white",
               command=konfirmasi_lunas).place(relx=0.5, rely=0.58, anchor="center")
+    gambar_backkkk = Image.open('bg/kembali.png').resize((300, 60), Image.LANCZOS)
+    gambar_backkkk2 = ImageTk.PhotoImage(gambar_backkkk)
+    tombolback = CTkButton(
+        frame_lunas, text="", image=gambar_backkkk2, cursor='hand2',
+        border_spacing=0, command=lambda:halaman_pilihan_pembayaran(main, rumah), fg_color="transparent"
+    )
+    tombolback.pack(padx=150, pady=50, anchor='s', side='left')   
 
+    # Tombol Quit
+    gambar_quit = Image.open('bg/quit.png').resize((300, 60), Image.LANCZOS)
+    gambar_quit2 = ImageTk.PhotoImage(gambar_quit)
+    tombolquit = CTkButton(
+        frame_lunas, text="", image=gambar_quit2, cursor='hand2',
+        border_spacing=0, command=main.quit, fg_color="transparent"
+    )
+    tombolquit.pack(padx=150, pady=50, anchor='s', side='right')    
+    
 def halaman_cicilan(main, rumah, email):
     global cic
 
@@ -553,6 +519,14 @@ def halaman_cicilan(main, rumah, email):
                            text_color="white",
                            command=hitung_cicilan)
     btn_hitung.place(relx=0.685, rely=0.67, anchor="center")
+    
+    gambar_backkk = Image.open('bg/kembali.png').resize((300, 60), Image.LANCZOS)
+    gambar_backkk2 = ImageTk.PhotoImage(gambar_backkk)
+    tombolback = CTkButton(
+        frame_perhitungan, text="", image=gambar_backkk2, cursor='hand2',
+        border_spacing=0, command=lambda: halaman_pilihan_pembayaran(main, rumah), fg_color="transparent"
+    )
+    tombolback.pack(padx=150, pady=50, anchor='s', side='left')   
 
 def halaman_cicilan2(main, rumah, email, nominal_cicilan=None):
     global cica
@@ -665,18 +639,26 @@ Pemilik Rekening: {rumah['pemilik']}"""
 
         halaman_rumah(main)
 
-    CTkButton(frame_cici, text="Konfirmasi Pembayaran Lunas", 
+    CTkButton(frame_cici, text="Konfirmasi Pembayaran", 
               font=("Helvetica", 25), 
               fg_color="#57a689",
               hover_color="#333333",
               text_color="white",
               command=konfirmasi_cicilan).place(relx=0.508, rely=0.6, anchor="center")
+    
+    gambar_backkkk = Image.open('bg/kembali.png').resize((300, 60), Image.LANCZOS)
+    gambar_backkkk2 = ImageTk.PhotoImage(gambar_backkkk)
+    tombolback = CTkButton(
+        frame_cici, text="", image=gambar_backkkk2, cursor='hand2',
+        border_spacing=0, command=lambda: halaman_cicilan(main, rumah, email), fg_color="transparent"
+    )
+    tombolback.pack(padx=150, pady=50, anchor='s', side='left')   
 
-
-# Main Program remains the same
-if __name__ == "__main__":
-    root = tk.Tk()
-    root.title("Sistem Rekomendasi Rumah")
-    root.geometry("1920x1080")
-    halaman_rumah(root)
-    root.mainloop()                
+    # Tombol Quit
+    gambar_quit = Image.open('bg/quit.png').resize((300, 60), Image.LANCZOS)
+    gambar_quit2 = ImageTk.PhotoImage(gambar_quit)
+    tombolquit = CTkButton(
+        frame_cici, text="", image=gambar_quit2, cursor='hand2',
+        border_spacing=0, command=main.quit, fg_color="transparent"
+    )
+    tombolquit.pack(padx=150, pady=50, anchor='s', side='right')                 

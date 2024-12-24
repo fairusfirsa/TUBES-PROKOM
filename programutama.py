@@ -13,10 +13,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
-from range1 import halaman_rumah as h1
-from range2 import halaman_rumah as h2
-from range3 import halaman_rumah as h3
-from range4 import halaman_rumah as h4
+
 
 # Fungsi Halaman 1
 def halaman1(main):
@@ -67,7 +64,10 @@ def toggle_password():
  
 # halaman 2
 def halaman_login(main):
-    global bg_login, pw_user, toggle_button, show_img, hide_img, label_bg  
+    global bg_login, pw_user, toggle_button, show_img, hide_img, label_bg, user_email
+    
+    user_email = "email@domain.com"  # Masukkan nilai user_email yang sesuai
+
     
     for widget in main.winfo_children():
         widget.destroy()
@@ -426,7 +426,12 @@ def halaman_hitung(main, user_email):
     
 #halaman rekomen
 def halaman_rekomen(main):
-    global gambar_rek, frame_rek
+    global gambar_rek, frame_rek, gambar_back
+    
+    from range1 import halaman_rumah as h1
+    from range2 import halaman_rumah as h2
+    from range3 import halaman_rumah as h3
+    from range4 import halaman_rumah as h4
 
     for widget in main.winfo_children():
         widget.destroy()
@@ -482,12 +487,12 @@ def halaman_rekomen(main):
     )
     tombol_750_1m.place(relx=0.5, rely=0.6, anchor="center")
     
-    
+    # Tombol back pada halaman_rekomen
+    gambar_back = Image.open('bg/kembali.png').resize((300, 60), Image.LANCZOS)
+    gambar_back2 = ImageTk.PhotoImage(gambar_back)
+    tombolback = CTkButton(
+        label_rek, text="", image=gambar_back2, cursor='hand2',
+        border_spacing=0, command=lambda: halaman3(main, user_email), fg_color="transparent"
+    )
+    tombolback.place(relx=0.15, rely=0.1, anchor="center")
 
-# Main Program
-if __name__ == "__main__":
-    root = tk.Tk()
-    root.title("Sistem Angsuran Rumah")
-    root.geometry("1920x1080")
-    halaman1(root)
-    root.mainloop()
